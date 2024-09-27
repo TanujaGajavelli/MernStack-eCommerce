@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body{
+            background-image:url('image.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        a{
+            text-decoration: none;
+            color: bisque;
+            font-size:30px;
+            padding: 0 25px;
+        }
+        .div1{
+            margin-left: 60%;
+            margin-top: -5%;
+        }
+        h1{
+            color: rgb(126, 147, 232);
+            font-size: 50px;
+            margin-left: 30px;
+        }
+        #userName{
+            margin-top: 13%;
+        }
+        input{
+            width:70%;
+            height:15%;
+            border-radius: 10px;
+            margin-left:15%;
+            font-size: 23px;
+            background-color: rgb(187, 187, 239);
+        }
+        button{
+            margin-left: 19%;
+            width:65%;
+            height:15%;
+            border-radius: 10px;
+            font-size: 23px;
+            background-color: rgb(187, 187, 239);
+        }  
+        .div2{
+            border:2px solid rgb(225, 197, 197);
+            margin: 5% 35%;
+            align-items: center;
+            height: 400px;
+            border-radius: 30px;
+            backdrop-filter: blur(3px);
+            box-shadow: 0 0 50px rgb(107, 107, 212);
+        }
+    </style>
+</head>
+<body>
+    <h1>Login Page!!</h1>
+    <div class="div1">
+        <a href="homePage.html">Home</a>  
+        <a href="addProd.html">Add</a>
+        <a href="login.html">Login</a>
+        <a href="signUp.html">SignUp</a>
+    </div> 
+    <div class="div2">
+        <input type="text" id="userName" placeholder="Enter your username"><br><br>
+        <input type="password" id="pass" placeholder="Enter your password"><br><br>
+        <button onclick="login()">Login!</button>
+    </div>
+</body>
+</html>
+<script>
+    let signUpData=JSON.parse(localStorage.getItem("signUpArr")) ||[];
+    let userName=document.getElementById("userName");
+    let pass=document.getElementById("pass");
+    let flag=false;
+    let count=0;
+    function login(){
+        if(userName.value && pass.value){
+            for(let i=0;i<signUpData.length;i++){
+                if(userName.value!=signUpData[i].userName){
+                    count++;
+                }
+                if(signUpData[i].userName===userName.value && signUpData[i].pass===pass.value){
+                    flag=true;
+                }
+            }
+            if(count==signUpData.length){
+                alert("username does not exist!!");
+            }
+            else{
+                if(flag===true){
+                    alert("Login successful!!");
+                    window.open("homePage.html");
+                }
+                else{
+                    alert("Login unsuccessful!!");
+                }
+                flag=false;
+            }
+        }
+        else{
+            alert("Enter all details!!");
+        }
+    }
+</script>

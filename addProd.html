@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <style>
+        body{
+            background-image:url('image.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        a{
+            text-decoration: none;
+            color: bisque;
+            font-size:30px;
+            padding: 0 25px;
+        }
+        .div1{
+            margin-left: 60%;
+            margin-top: -5%;
+        }
+        h1{
+            color: rgb(126, 147, 232);
+            font-size: 50px;
+            margin-left: 30px;
+        }
+        #name{
+            margin-top: 10%;
+        }
+        input{
+            width:70%;
+            height:13%;
+            border-radius: 10px;
+            margin-left:15%;
+            font-size: 23px;
+            background-color: rgb(187, 187, 239);
+        }
+        button{
+            margin-left: 20%;
+            width:65%;
+            height:10%;
+            border-radius: 10px;
+            font-size: 23px;
+            background-color: rgb(187, 187, 239);
+        }  
+        .div2{
+            border:2px solid rgb(225, 197, 197);
+            margin: 5% 35%;
+            align-items: center;
+            height: 450px;
+            border-radius: 30px;
+            backdrop-filter: blur(3px);
+            box-shadow: 0 0 50px rgb(107, 107, 212);
+        }
+    </style>
+</head>
+<body>
+    <h1>Add Product!!</h1>
+    <div class="div1">
+        <a href="homePage.html">Home</a>  
+        <a href="addProd.html">Add</a>
+        <a href="login.html">Login</a>
+        <a href="signUp.html">SignUp</a>
+    </div> 
+    <div class="div2">
+        <input type="text" placeholder="Enter product name" id="name"><br><br>
+        <input type="text" placeholder="Enter image of product" id="image"><br><br>
+        <input type="number" placeholder="Enter price of image" id="price"><br><br>
+        <button onclick="add()">Add Product!!</button>
+    </div>
+</body> 
+</html>
+<script>
+    let name=document.getElementById("name");
+    let image=document.getElementById("image");
+    let price=document.getElementById("price");
+    let prodDetails=JSON.parse(localStorage.getItem("product")) || [];
+    function add(){
+        if(name.value && image.value && price.value){
+            let obj={name:name.value,
+            image:image.value,
+            price:price.value
+            }
+            prodDetails.push(obj);   
+            localStorage.setItem("product",JSON.stringify(prodDetails));
+            alert("Product added successfully!!");
+        }
+        else{
+            alert("Enter all product details!!");
+        }
+    }
+</script>

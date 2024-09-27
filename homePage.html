@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body{
+            background-image:url('image.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        a{
+            text-decoration: none;
+            color: bisque;
+            font-size:30px;
+            padding: 0 25px;
+        }
+        .div1{
+            margin-left: 60%;
+            margin-top: -5%;
+        }
+        h1{
+            color: rgb(126, 147, 232);
+            font-size: 50px;
+            margin-left: 30px;
+        }
+        .div2{
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 100px;
+            justify-content:space-evenly ;
+        }
+        .protext{
+            height:250px;
+            width:300px;
+            font-size: 40px;
+            text-align: center;
+            color: antiquewhite;
+        }
+        .pro{
+            height:250px;
+            width:300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Home Page!!</h1>
+    <div class="div1">
+        <a href="homePage.html">Home</a>  
+        <a href="addProd.html">Add</a>
+        <a href="login.html">Login</a>
+        <a href="signUp.html">SignUp</a>
+    </div>    
+</body>
+</html>
+<script>
+    let prods=JSON.parse(localStorage.getItem("product")) || [];
+    for(let i=0;i<prods.length;i++){
+        let name=document.createElement("text");
+        name.setAttribute("class","protext");
+        let image=document.createElement("img");
+        image.setAttribute("class","pro");
+        let price=document.createElement("text");
+        price.setAttribute("class","protext");
+        let div2=document.createElement("div");
+        div2.setAttribute("class","div2");
+
+        name.innerText="Name: "+prods[i].name;
+        image.src=prods[i].image;
+        price.innerText="Price: $"+prods[i].price;
+
+        let body=document.querySelector("body");
+        div2.append(name,image,price);
+        body.append(div2);
+    }
+</script>    
